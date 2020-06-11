@@ -5,12 +5,23 @@
 alert, confirm, console, prompt
 */
 
+const gameGoalRange = [1, 100];
+
 let isNumber = function (n) {
     return !isNaN(n) && isFinite(n);
 };
 
+function randomInt(min, max) {
+	return min + Math.floor((max - min) * Math.random());
+}
+
 function game() {
-    let goalNumber = 10;
+    let goalNumber;
+
+    function initGame(){
+        goalNumber = randomInt(gameGoalRange[0], gameGoalRange[1]);
+        console.log('goalNumber: ', goalNumber);
+    }
 
     function userTry(firstMessahe = '') {
         let tryNumber = prompt(`${firstMessahe}Введите число (Отмена - выход)`);
@@ -30,6 +41,8 @@ function game() {
         }
     }
 
+    initGame();
+    
     return userTry;
 }
 
