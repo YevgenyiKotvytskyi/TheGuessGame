@@ -21,11 +21,10 @@ function game() {
         let tryNumber = prompt(`${firstMessahe}Введите число (Отмена - выход)`);
         if (tryNumber == null) {
             alert('Игра окончена пользователем.');
-            return;
         } else if (!isNumber(tryNumber)) {
             alert('Введте число!');
             userTry();
-        } else if ( tryCount == 1) {
+        } else if (tryCount == 1) {
             if (confirm('Попытки закончились, хотите сыграть еще?')) {
                 tryCount = maxTry;
                 userTry();
@@ -37,10 +36,10 @@ function game() {
         } else if (tryNumber > goalNumber) {
             userTry(`Загаданное число меньше ${tryNumber}! Осталось ${--tryCount}\n`);
         } else {
-            if ( confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?') ) {
+            if (confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?')) {
                 tryCount = maxTry;
                 userTry();
-            } 
+            }
         }
     }
 
