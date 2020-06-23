@@ -7,18 +7,18 @@ alert, confirm, console, prompt
 
 
 function DomElement(selector, height, width, bg, fontSize) {
-    this.selector    =   selector;
-    this.height      =   height; 
-    this.width       =   width; 
-    this.bg          =   bg; 
-    this.fontSize    =   fontSize;
+    this.selector = selector;
+    this.height = height;
+    this.width = width;
+    this.bg = bg;
+    this.fontSize = fontSize;
 }
 
-DomElement.prototype.getElement = function() {
+DomElement.prototype.getElement = function () {
+    let newElement = null;
     if (this.selector) {
         const selector = this.selector[0];
-        let newElement = null;
-        if ( selector=== '.') {
+        if (selector === '.') {
             newElement = document.createElement('div');
             newElement.innerText = 'The new div element';
             newElement.classList.add(this.selector.substring(1));
@@ -34,12 +34,49 @@ DomElement.prototype.getElement = function() {
                 background-color: ${this.bg};
                 font-size: ${this.fontSize};
             `;
-            document.body.append(newElement);
         }
     }
-}
+    return newElement;
+};
 
-let divElement = new DomElement('.block','20px','200px','green','14px');
-let paragraphElement = new DomElement('#block','20px','200px','blue','14px');
-divElement.getElement();
-paragraphElement.getElement();
+let divElement = new DomElement('.block', '100px', '100px', 'green', '14px');
+
+let newElement = divElement.getElement();
+
+newElement.style.cssText += 'position: absolute; top: 50px; left: 50px;';
+
+document.body.addEventListener('keydown', () => {
+    //console.dir(;
+    function addPx(position, add = true) {
+        let pos = parseInt(position);
+        if (add) {
+            pos += 10;
+        } else {
+            pos -= 10;
+        }
+        return (pos > 0) ? pos + 'px' : 0;
+    }
+
+    let style = newElement.style;
+
+    switch (event.key) {
+        case 'ArrowUp':
+            style.top = addPx(style.top, false);
+            break;
+        case 'ArrowRight':
+            style.left = addPx(style.left);
+            break;
+        case 'ArrowLeft':
+            style.left = addPx(style.left, false);
+            break;
+        case 'ArrowDown':
+            style.top = addPx(style.top);
+            break;
+    }
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.append(newElement);
+})
+
