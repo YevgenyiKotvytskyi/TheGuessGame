@@ -28,10 +28,12 @@ DomElement.prototype.getElement = function() {
             newElement.id = this.selector.substring(1);
         }
         if (newElement) {
-            newElement.style.height = this.height;
-            newElement.style.width = this.width;
-            newElement.style.background = this.bg;
-            newElement.style.fontSize = this.fontSize;
+            newElement.style.cssText = `
+                height: ${this.height};
+                width: ${this.width};
+                background-color: ${this.bg};
+                font-size: ${this.fontSize};
+            `;
             document.body.append(newElement);
         }
     }
