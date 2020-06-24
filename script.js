@@ -20,11 +20,11 @@ DomElement.prototype.getElement = function () {
         const selector = this.selector[0];
         if (selector === '.') {
             newElement = document.createElement('div');
-            newElement.innerText = 'The new div element';
+            newElement.textContent = 'The new div element';
             newElement.classList.add(this.selector.substring(1));
         } else if (selector === '#') {
             newElement = document.createElement('p');
-            newElement.innerText = 'The new paragraph element';
+            newElement.textContent = 'The new paragraph element';
             newElement.id = this.selector.substring(1);
         }
         if (newElement) {
