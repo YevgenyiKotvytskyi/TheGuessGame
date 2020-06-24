@@ -45,8 +45,8 @@ let newElement = divElement.getElement();
 
 newElement.style.cssText += 'position: absolute; top: 50px; left: 50px;';
 
-document.body.addEventListener('keydown', () => {
-    //console.dir(;
+let moveElement = function () {
+
     function addPx(position, add = true) {
         let pos = parseInt(position);
         if (add) {
@@ -74,9 +74,10 @@ document.body.addEventListener('keydown', () => {
             break;
     }
 
-});
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     document.body.append(newElement);
-})
+    document.body.addEventListener('keydown', moveElement);
+});
 
